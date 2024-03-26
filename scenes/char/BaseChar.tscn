@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cdppan6umw1pc"]
+[gd_scene load_steps=47 format=3 uid="uid://cdppan6umw1pc"]
 
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="1"]
 [ext_resource type="Script" path="res://scripts/BattleMovement.gd" id="2"]
@@ -64,7 +64,12 @@ metadata/graph_offset = Vector2(766, 582)
 [sub_resource type="Resource" id="Resource_v12k7"]
 script = ExtResource("5_qnuoo")
 name = "CrouchMoving"
-metadata/graph_offset = Vector2(466, 502)
+metadata/graph_offset = Vector2(343, 562)
+
+[sub_resource type="Resource" id="Resource_d1ttl"]
+script = ExtResource("5_qnuoo")
+name = "Dashing"
+metadata/graph_offset = Vector2(562.5, 502)
 
 [sub_resource type="Resource" id="Resource_kkw1l"]
 script = ExtResource("6_wo8uu")
@@ -101,10 +106,10 @@ to = "CrouchMoving"
 conditions = {}
 priority = 0
 
-[sub_resource type="Resource" id="Resource_ps2ev"]
+[sub_resource type="Resource" id="Resource_ef1wp"]
 script = ExtResource("6_wo8uu")
 from = "Moving"
-to = "Exit"
+to = "Dashing"
 conditions = {}
 priority = 0
 
@@ -164,11 +169,26 @@ to = "Exit"
 conditions = {}
 priority = 0
 
+[sub_resource type="Resource" id="Resource_o2dor"]
+script = ExtResource("6_wo8uu")
+from = "Dashing"
+to = "Moving"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_3mygt"]
+script = ExtResource("6_wo8uu")
+from = "Dashing"
+to = "Exit"
+conditions = {}
+priority = 0
+
 [sub_resource type="Resource" id="Resource_15slg"]
 script = ExtResource("4_smtfh")
 states = {
 "CrouchMoving": SubResource("Resource_v12k7"),
 "Crouching": SubResource("Resource_xg262"),
+"Dashing": SubResource("Resource_d1ttl"),
 "Entry": SubResource("Resource_eovv1"),
 "Exit": SubResource("Resource_5pul8"),
 "Falling": SubResource("Resource_ohnly"),
@@ -183,6 +203,10 @@ transitions = {
 },
 "Crouching": {
 "CrouchMoving": SubResource("Resource_pqnjg")
+},
+"Dashing": {
+"Exit": SubResource("Resource_3mygt"),
+"Moving": SubResource("Resource_o2dor")
 },
 "Entry": {
 "Crouching": SubResource("Resource_cdlw3"),
@@ -199,7 +223,7 @@ transitions = {
 },
 "Moving": {
 "CrouchMoving": SubResource("Resource_sso33"),
-"Exit": SubResource("Resource_ps2ev"),
+"Dashing": SubResource("Resource_ef1wp"),
 "Jumping": SubResource("Resource_2meuv")
 }
 }
