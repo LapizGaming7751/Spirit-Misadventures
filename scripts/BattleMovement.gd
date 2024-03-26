@@ -5,10 +5,7 @@ extends CharacterBody2D
 @export var maxHP : float = 1500
 @export var elm : Array = ["empty","joy","sorrow","vengance","fear","power","wealth","fame"]
 
-# StateMachine
-@onready var State = $StateMachinePlayer
-
-# Stats
+# Statss
 
 func _ready():
 	pass # Replace with function body.
