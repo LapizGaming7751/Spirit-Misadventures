@@ -1,3 +1,4 @@
 res://default_env.tres
 res://scenes/char/BaseChar.tscn
 res://scripts/BattleMovement.gd
+res://scenes/map_battle/BaseMap.tscn

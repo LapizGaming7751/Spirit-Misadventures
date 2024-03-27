@@ -3,14 +3,26 @@ extends CharacterBody2D
 # Vars
 @export var baseSpeed : float = 10.0
 @export var maxHP : float = 1500
-@export var elm : Array = ["empty","joy","sorrow","vengance","fear","power","wealth","fame"]
+const GRAVITY = 980
 
-# Statss
+# Stats
+var jumpStr : float = 25
+var dir : Vector2
+var curHP : float = maxHP
 
-func _ready():
-	pass # Replace with function body.
+func control():
+	if is_on_floor():
+		dir.x = Input.get_axis("left","right")
+	dir.y = -Input.get_action_strength("jump")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _physics_process(delta):
+	control()
+	
+	velocity.x = ((dir.x * baseSpeed) * 1000) * delta
+	
+	if is_on_floor():
+		velocity.y += ((dir.y * jumpStr) * 1000) * delta
+	else:
+		velocity.y += GRAVITY * delta
+	
+	move_and_slide()
