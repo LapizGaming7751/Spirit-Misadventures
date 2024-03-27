@@ -5,6 +5,9 @@ extends CharacterBody2D
 @export var maxHP : float = 1500
 const GRAVITY = 980
 
+# State Machine
+@onready var StateMachine = $StateMachine
+
 # Stats
 var jumpStr : float = 25
 var dir : Vector2
@@ -13,6 +16,8 @@ var curHP : float = maxHP
 func control():
 	if is_on_floor():
 		dir.x = Input.get_axis("left","right")
+		if Input.is_action_pressed("down"):
+			dir.x /= 2
 	dir.y = -Input.get_action_strength("jump")
 
 func _physics_process(delta):

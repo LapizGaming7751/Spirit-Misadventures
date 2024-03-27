@@ -1,4 +1,5 @@
-StateMachinePlayer
+State
+Node
 AnimationPlayer
 StateMachineState
 FiniteStateMachine

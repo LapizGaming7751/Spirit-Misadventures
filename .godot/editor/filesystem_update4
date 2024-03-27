@@ -1,4 +1,11 @@
 res://default_env.tres
 res://scenes/char/BaseChar.tscn
 res://scripts/BattleMovement.gd
+res://scripts/state/State.gd
+res://scripts/StateMachine.gd
 res://scenes/map_battle/BaseMap.tscn
+res://scripts/state/generic/Air.gd
+res://scripts/state/generic/Idle.gd
+res://scripts/state/generic/Moving.gd
+res://scripts/state/generic/Crouch.gd
+res://scripts/state/generic/Entry.gd

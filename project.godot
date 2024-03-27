@@ -21,7 +21,7 @@ version_control_plugin_name="GitAPI"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/imjp94.yafsm/plugin.cfg")
+enabled=PackedStringArray()
 
 [gui]
 
