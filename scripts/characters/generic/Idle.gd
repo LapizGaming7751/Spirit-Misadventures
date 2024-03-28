@@ -10,3 +10,6 @@ func PhysicsUpdate(delta):
 		parent.transit("Moving")
 	if Input.is_action_pressed("down"):
 		parent.transit("Crouch")
+	if Input.is_action_just_pressed("dash") && Player.confidence >= 20:
+		Player.confidence -= 20
+		parent.transit("Dash")

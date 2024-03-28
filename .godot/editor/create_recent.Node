@@ -1,7 +1,8 @@
+Timer
+State
 Label
 VSplitContainer
 Control
-State
 Node
 AnimatedSprite2D
 AnimationPlayer

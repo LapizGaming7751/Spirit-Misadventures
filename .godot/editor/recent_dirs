@@ -1,4 +1,5 @@
-res://scripts/debug
 res://scripts/characters/generic
+res://script_templates/StateMachineState
+res://scripts/debug
 res://scripts/characters/secondChar
 res://scripts

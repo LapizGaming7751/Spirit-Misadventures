@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdppan6umw1pc"]
+[gd_scene load_steps=11 format=3 uid="uid://cdppan6umw1pc"]
 
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="1"]
 [ext_resource type="Script" path="res://scripts/BattleMovement.gd" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/characters/generic/Moving.gd" id="5_cjnjp"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Air.gd" id="6_gpfga"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Crouch.gd" id="7_k12uu"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Dash.gd" id="8_yciqr"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 0.0
@@ -14,6 +15,26 @@ height = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ghi5"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"dashing",
+"speed": 24.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1")
@@ -31,6 +52,7 @@ shape = SubResource("1")
 
 [node name="Anims" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5ghi5")
+animation = &"dashing"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("3_vi1sp")
@@ -47,3 +69,11 @@ script = ExtResource("6_gpfga")
 
 [node name="Crouch" type="Node" parent="StateMachine"]
 script = ExtResource("7_k12uu")
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("8_yciqr")
+
+[node name="ConfidenceRegen" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="ConfidenceRegen" to="." method="_on_confidence_regen_timeout"]
