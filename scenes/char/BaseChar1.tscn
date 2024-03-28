@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdppan6umw1pc"]
+
+[ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="1"]
+[ext_resource type="Script" path="res://scripts/BattleMovement.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/characters/StateMachine.gd" id="3_vi1sp"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Idle.gd" id="4_edq1d"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Moving.gd" id="5_cjnjp"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Air.gd" id="6_gpfga"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ghi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 0.0
+height = 0.0
+
+[node name="OtherChar" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("2")
+
+[node name="Anims" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5ghi5")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
+script = ExtResource("3_vi1sp")
+InitialState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_edq1d")
+
+[node name="Moving" type="Node" parent="StateMachine"]
+script = ExtResource("5_cjnjp")
+
+[node name="Air" type="Node" parent="StateMachine"]
+script = ExtResource("6_gpfga")

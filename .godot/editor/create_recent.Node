@@ -1,5 +1,6 @@
 State
 Node
+AnimatedSprite2D
 AnimationPlayer
 StateMachineState
 FiniteStateMachine

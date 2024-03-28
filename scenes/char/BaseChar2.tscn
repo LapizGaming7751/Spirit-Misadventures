@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://p6ctx2ev3p3c"]
+
+[ext_resource type="Script" path="res://scripts/characters/secondChar/BaseChar2.gd" id="1_auj50"]
+[ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="2_h7y8d"]
+[ext_resource type="Script" path="res://scripts/characters/StateMachine.gd" id="3_ntcd5"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Idle.gd" id="4_b4ylh"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Moving.gd" id="5_vtpps"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Air.gd" id="6_thxyf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ghi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 0.0
+height = 0.0
+
+[node name="BaseChar" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_auj50")
+
+[node name="Anims" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5ghi5")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
+script = ExtResource("3_ntcd5")
+InitialState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_b4ylh")
+
+[node name="Moving" type="Node" parent="StateMachine"]
+script = ExtResource("5_vtpps")
+
+[node name="Air" type="Node" parent="StateMachine"]
+script = ExtResource("6_thxyf")

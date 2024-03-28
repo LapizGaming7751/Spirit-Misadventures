@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjpgvmjxpvcii"]
+[gd_scene load_steps=4 format=3 uid="uid://cjpgvmjxpvcii"]
 
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="1"]
-[ext_resource type="PackedScene" uid="uid://cdppan6umw1pc" path="res://scenes/char/BaseChar1.tscn" id="2_602rk"]
-[ext_resource type="PackedScene" uid="uid://p6ctx2ev3p3c" path="res://scenes/char/BaseChar2.tscn" id="3_vvyvn"]
+[ext_resource type="PackedScene" uid="uid://cdppan6umw1pc" path="res://scenes/char/BaseChar.tscn" id="2_602rk"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(1228, 62)
@@ -20,7 +19,4 @@ texture = ExtResource("1")
 shape = SubResource("1")
 
 [node name="BaseChar" parent="." instance=ExtResource("2_602rk")]
-position = Vector2(558, 276)
-
-[node name="BaseChar2" parent="." instance=ExtResource("3_vvyvn")]
-position = Vector2(545, 437)
+position = Vector2(567, 433)
