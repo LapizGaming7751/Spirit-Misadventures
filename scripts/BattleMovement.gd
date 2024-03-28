@@ -23,11 +23,9 @@ func _physics_process(delta):
 	control()
 	
 	if State.stateNow != "Air":
-		velocity.x = ((dir.x * baseSpeed) * 1000) * delta
-	
-	if State.stateNow == "Air":
-		velocity.y += GRAVITY * delta
-	else:
 		velocity.y += ((dir.y * jumpStr) * 1000) * delta
+		velocity.x = ((dir.x * baseSpeed) * 1000) * delta
+	else:
+		velocity.y += GRAVITY * delta
 	
 	move_and_slide()

@@ -28,7 +28,7 @@ func transit(nextState):
 	var newState = states[nextState]
 	if newState == currentState:
 		return
-	print(str(get_parent().name)+": "+str(currentState)+" transitioning to "+str(newState))
+	print(str(get_parent().name)+": "+stateNow+" transitioning to "+nextState)
 	if states.has(nextState):
 		currentState = newState
 		stateNow = currentState.name
