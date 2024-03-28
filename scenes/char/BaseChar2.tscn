@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://p6ctx2ev3p3c"]
+[gd_scene load_steps=10 format=3 uid="uid://p6ctx2ev3p3c"]
 
 [ext_resource type="Script" path="res://scripts/characters/secondChar/BaseChar2.gd" id="1_auj50"]
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="2_h7y8d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/characters/generic/Idle.gd" id="4_b4ylh"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Moving.gd" id="5_vtpps"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Air.gd" id="6_thxyf"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Crouch.gd" id="7_igkhb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ghi5"]
 animations = [{
@@ -43,3 +44,6 @@ script = ExtResource("5_vtpps")
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("6_thxyf")
+
+[node name="Crouch" type="Node" parent="StateMachine"]
+script = ExtResource("7_igkhb")

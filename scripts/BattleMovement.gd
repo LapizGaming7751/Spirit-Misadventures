@@ -2,16 +2,18 @@ extends CharacterBody2D
 class_name Combat
 
 # Vars
-@export var baseSpeed : float = 10.0
+@export var baseSpeed : float = 11.5
 @export var maxHP : float = 1500
-const GRAVITY = 980
+enum face{LEFT,RIGHT}
+@export var looking : face
+const GRAVITY = 1250
 
 # Onreadies
 @onready var Anims = $Anims
 @onready var State = $StateMachine
 
 # Stats
-var jumpStr : float = 25
+var jumpStr : float = 14.5
 var dir : Vector2
 var curHP : float = maxHP
 
@@ -21,11 +23,5 @@ func control():
 
 func _physics_process(delta):
 	control()
-	
-	if State.stateNow != "Air":
-		velocity.y += ((dir.y * jumpStr) * 1000) * delta
-		velocity.x = ((dir.x * baseSpeed) * 1000) * delta
-	else:
-		velocity.y += GRAVITY * delta
 	
 	move_and_slide()

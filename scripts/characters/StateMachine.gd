@@ -2,7 +2,9 @@ extends Node
 
 @export var InitialState : State
 var currentState : State
+var previousState : State
 var stateNow : String
+var stateLast : String
 
 var states : Dictionary = {}
 
@@ -28,8 +30,10 @@ func transit(nextState):
 	var newState = states[nextState]
 	if newState == currentState:
 		return
-	print(str(get_parent().name)+": "+stateNow+" transitioning to "+nextState)
+	print(str(get_parent().name)+": "+stateNow+" transitioning to "+nextState+". Previous state: "+stateLast)
 	if states.has(nextState):
+		previousState = currentState
 		currentState = newState
 		stateNow = currentState.name
+		stateLast = previousState.name
 	
