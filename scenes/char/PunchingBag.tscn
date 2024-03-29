@@ -1,18 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://p6ctx2ev3p3c"]
+[gd_scene load_steps=9 format=3 uid="uid://p6ctx2ev3p3c"]
 
-[ext_resource type="Script" path="res://scripts/characters/punchingBag/OtherChar.gd" id="1_l6nt7"]
+[ext_resource type="Script" path="res://scripts/characters/punchingBag/PunchingBag.gd" id="1_l6nt7"]
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="2_h7y8d"]
 [ext_resource type="Script" path="res://scripts/characters/StateMachine.gd" id="3_ntcd5"]
-[ext_resource type="Script" path="res://scripts/characters/generic/Idle.gd" id="4_b4ylh"]
-[ext_resource type="Script" path="res://scripts/characters/generic/Moving.gd" id="5_vtpps"]
-[ext_resource type="Script" path="res://scripts/characters/generic/Air.gd" id="6_thxyf"]
-[ext_resource type="Script" path="res://scripts/characters/generic/Crouch.gd" id="7_igkhb"]
-[ext_resource type="Script" path="res://scripts/characters/generic/Dash.gd" id="8_5ov8x"]
-[ext_resource type="Script" path="res://scripts/characters/generic/SpotDodge.gd" id="9_0glyj"]
-[ext_resource type="Script" path="res://scripts/characters/generic/Turnaround.gd" id="10_fp6q4"]
+[ext_resource type="Script" path="res://scripts/characters/punchingBag/PunchingIdle.gd" id="4_w7t8m"]
+[ext_resource type="Script" path="res://scripts/characters/punchingBag/PunchingAir.gd" id="5_ykqyc"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Hurt.gd" id="11_tn05j"]
-[ext_resource type="Script" path="res://scripts/characters/generic/Parry.gd" id="12_rbjsf"]
-[ext_resource type="Script" path="res://scripts/characters/generic/Block.gd" id="13_mg8ti"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iimru"]
 animations = [{
@@ -103,7 +96,7 @@ animations = [{
 radius = 32.0
 height = 64.0
 
-[node name="OtherChar" type="CharacterBody2D" groups=["Characters"]]
+[node name="PunchingBag" type="CharacterBody2D" groups=["Characters"]]
 script = ExtResource("1_l6nt7")
 
 [node name="Anims" type="AnimatedSprite2D" parent="."]
@@ -119,34 +112,13 @@ script = ExtResource("3_ntcd5")
 InitialState = NodePath("Air")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("4_b4ylh")
-
-[node name="Moving" type="Node" parent="StateMachine"]
-script = ExtResource("5_vtpps")
+script = ExtResource("4_w7t8m")
 
 [node name="Air" type="Node" parent="StateMachine"]
-script = ExtResource("6_thxyf")
-
-[node name="Crouch" type="Node" parent="StateMachine"]
-script = ExtResource("7_igkhb")
-
-[node name="Dash" type="Node" parent="StateMachine"]
-script = ExtResource("8_5ov8x")
-
-[node name="SpotDodge" type="Node" parent="StateMachine"]
-script = ExtResource("9_0glyj")
-
-[node name="Turnaround" type="Node" parent="StateMachine"]
-script = ExtResource("10_fp6q4")
+script = ExtResource("5_ykqyc")
 
 [node name="Hurt" type="Node" parent="StateMachine"]
 script = ExtResource("11_tn05j")
-
-[node name="Parry" type="Node" parent="StateMachine"]
-script = ExtResource("12_rbjsf")
-
-[node name="Block" type="Node" parent="StateMachine"]
-script = ExtResource("13_mg8ti")
 
 [node name="ConfidenceRegen" type="Timer" parent="."]
 autostart = true

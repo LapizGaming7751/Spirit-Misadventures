@@ -7,7 +7,7 @@ class_name Combat
 enum face{LEFT=-1,RIGHT=1}
 @export var looking : face
 @export var lastDir : face
-var maxConfidence : int = 100
+var maxConfidence : float = 100.0
 var confidence : float = 50.0
 var hurt : float
 var knockbackTaken : Vector2
@@ -47,8 +47,9 @@ func _physics_process(delta):
 	
 	if confidence > maxConfidence:
 		confidence = maxConfidence
-	if confidence < 0.0:
+	if confidence <= 0.0:
 		confidence = 0.0
+		State.transit("ConfBreak")
 	
 	$Health.text = str(curHP)
 	if is_anything_just_released():
@@ -61,15 +62,18 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_confidence_regen_timeout():
-	confidence += 2
 	print(str(get_name())+": "+str(confidence))
 
 func take_damage(damage : float, knockback : Vector2, hurtTime : float):
+	hurt = hurtTime
+	knockbackTaken = knockback
+	damageTaken = damage
 	if !State.isCurrentState("SpotDodge") or !State.isCurrentState("Dash"):
 		print(str(get_name())+": Took "+str(damage)+" damage!")
-		hurt = hurtTime
-		knockbackTaken = knockback
-		damageTaken = damage
 		if !State.isCurrentState("Parry") and !State.isCurrentState("Block"):
 			State.transit("Hurt")
 			print(State.currentState)
+		else:
+			print(str(get_name())+": Defended the attack. Took "+str(damage * 0.8)+" damage!")
+	else:
+		print(str(get_name())+": Dodged the attack!")

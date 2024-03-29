@@ -1,22 +1,6 @@
 res://default_env.tres
-res://scenes/char/BaseChar1.tscn
-res://scripts/characters/StateMachine.gd
-res://scripts/BattleMovement.gd
-res://scenes/map_battle/BaseMap.tscn
-res://scripts/characters/generic/Idle.gd
-res://scripts/characters/generic/Air.gd
-res://scripts/characters/generic/Moving.gd
-res://scripts/characters/generic/Crouch.gd
-res://scripts/characters/generic/Dash.gd
-res://scripts/characters/generic/SpotDodge.gd
-res://scripts/characters/generic/Turnaround.gd
-res://scripts/characters/StateSkill.gd
+res://scenes/char/BaseChar.tscn
 res://scripts/characters/StateClass.gd
-res://scripts/characters/Hurtbox.gd
-res://scripts/characters/generic/Hurt.gd
-res://scenes/char/BaseSkill.tscn
-res://scripts/characters/punchingBag/Punching Bag.gd
-res://scenes/char/BaseChar2.tscn
-res://scripts/characters/generic/Parry.gd
-res://scripts/characters/generic/Block.gd
-res://scripts/characters/punchingBag/OtherChar.gd
+res://scripts/BattleMovement.gd
+res://scenes/char/PunchingBag.tscn
+res://scenes/map_battle/BaseMap.tscn

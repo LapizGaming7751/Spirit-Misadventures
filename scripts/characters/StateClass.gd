@@ -36,7 +36,7 @@ func Enter():
 	if isSkill:
 		Hurtbox = $Hurtbox
 		Hurtbox.active = false
-		if Player.confidence >= Hurtbox.requiredConfidence:
+		if Player.confidence > Hurtbox.requiredConfidence:
 			Player.confidence -= Hurtbox.requiredConfidence
 		else:
 			parent.transit(defaultTransit.get_name())

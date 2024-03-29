@@ -1,5 +1,5 @@
-res://scripts/characters/punchingBag
 res://scripts/characters/generic
+res://scripts/characters/punchingBag
 res://scenes/char
 res://script_templates/StateMachineState
 res://scripts/debug

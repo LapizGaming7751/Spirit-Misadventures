@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdppan6umw1pc"]
+[gd_scene load_steps=20 format=3 uid="uid://cdppan6umw1pc"]
 
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="1"]
 [ext_resource type="Script" path="res://scripts/BattleMovement.gd" id="2"]
@@ -10,11 +10,12 @@
 [ext_resource type="Script" path="res://scripts/characters/generic/Dash.gd" id="8_yciqr"]
 [ext_resource type="Script" path="res://scripts/characters/generic/SpotDodge.gd" id="9_tquld"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Turnaround.gd" id="10_mawl2"]
+[ext_resource type="Script" path="res://scripts/characters/Parry.gd" id="11_07bif"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Hurt.gd" id="11_bj32h"]
-[ext_resource type="Script" path="res://scripts/characters/generic/Parry.gd" id="11_bjnyv"]
 [ext_resource type="Script" path="res://scripts/characters/secondChar/Attack1.gd" id="11_jv3vg"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Block.gd" id="12_ju4lv"]
 [ext_resource type="Script" path="res://scripts/characters/Hurtbox.gd" id="13_ut7dg"]
+[ext_resource type="Script" path="res://scripts/characters/generic/ConfBreak.gd" id="14_efldd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ghi5"]
 animations = [{
@@ -147,7 +148,7 @@ script = ExtResource("9_tquld")
 script = ExtResource("10_mawl2")
 
 [node name="Parry" type="Node" parent="StateMachine"]
-script = ExtResource("11_bjnyv")
+script = ExtResource("11_07bif")
 
 [node name="Block" type="Node" parent="StateMachine"]
 script = ExtResource("12_ju4lv")
@@ -155,12 +156,15 @@ script = ExtResource("12_ju4lv")
 [node name="Hurt" type="Node" parent="StateMachine"]
 script = ExtResource("11_bj32h")
 
+[node name="ConfBreak" type="Node" parent="StateMachine"]
+script = ExtResource("14_efldd")
+
 [node name="SkillA" type="Node" parent="StateMachine" node_paths=PackedStringArray("defaultTransit")]
 script = ExtResource("11_jv3vg")
 isSkill = true
 activeFrame = 3
 endFrame = 4
-knockback = Vector2(15, 0)
+knockback = Vector2(40, -15)
 selfKnockback = Vector2(15, 0)
 lunge = Vector2(20, 0)
 stunsFor = 0.24

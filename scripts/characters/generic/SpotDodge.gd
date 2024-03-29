@@ -30,3 +30,8 @@ func PhysicsUpdate(delta):
 			parent.transit("Crouch")
 		else:
 			parent.transit("Idle")
+
+func Exit():
+	if Player.damageTaken > 0.0:
+		Player.confidence += Player.damageTaken / 10
+		Player.damageTaken = 0.0

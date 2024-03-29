@@ -20,6 +20,8 @@ func PhysicsUpdate(delta):
 	
 	if hurtTime >= 0.0:
 		Player.velocity = knockbackTake
+		knockbackTake.x += knockbackTake.x * -clamp(hurtTime, 0.0, 0.5)
+		knockbackTake.y += Player.GRAVITY * delta
 	
 	Player.hurt = hurtTime
 	
