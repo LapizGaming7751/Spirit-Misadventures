@@ -1,15 +1,67 @@
-[gd_scene load_steps=10 format=3 uid="uid://p6ctx2ev3p3c"]
+[gd_scene load_steps=16 format=3 uid="uid://p6ctx2ev3p3c"]
 
-[ext_resource type="Script" path="res://scripts/characters/secondChar/BaseChar2.gd" id="1_auj50"]
+[ext_resource type="Script" path="res://scripts/characters/punchingBag/OtherChar.gd" id="1_l6nt7"]
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="2_h7y8d"]
 [ext_resource type="Script" path="res://scripts/characters/StateMachine.gd" id="3_ntcd5"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Idle.gd" id="4_b4ylh"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Moving.gd" id="5_vtpps"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Air.gd" id="6_thxyf"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Crouch.gd" id="7_igkhb"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Dash.gd" id="8_5ov8x"]
+[ext_resource type="Script" path="res://scripts/characters/generic/SpotDodge.gd" id="9_0glyj"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Turnaround.gd" id="10_fp6q4"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Hurt.gd" id="11_tn05j"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Parry.gd" id="12_rbjsf"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Block.gd" id="13_mg8ti"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5ghi5"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_iimru"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}],
+"loop": false,
+"name": &"SkillA",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}],
+"loop": false,
+"name": &"dashing",
+"speed": 24.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_h7y8d")
@@ -17,24 +69,54 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7y8d")
+}],
+"loop": false,
+"name": &"turnaround",
+"speed": 24.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="1"]
-radius = 0.0
-height = 0.0
+radius = 32.0
+height = 64.0
 
-[node name="OtherChar" type="CharacterBody2D" groups=["Player"]]
-script = ExtResource("1_auj50")
+[node name="OtherChar" type="CharacterBody2D" groups=["Characters"]]
+script = ExtResource("1_l6nt7")
 
 [node name="Anims" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_5ghi5")
+sprite_frames = SubResource("SpriteFrames_iimru")
+animation = &"hurt"
+autoplay = "default"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("1")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("3_ntcd5")
-InitialState = NodePath("Idle")
+InitialState = NodePath("Air")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_b4ylh")
@@ -47,3 +129,30 @@ script = ExtResource("6_thxyf")
 
 [node name="Crouch" type="Node" parent="StateMachine"]
 script = ExtResource("7_igkhb")
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("8_5ov8x")
+
+[node name="SpotDodge" type="Node" parent="StateMachine"]
+script = ExtResource("9_0glyj")
+
+[node name="Turnaround" type="Node" parent="StateMachine"]
+script = ExtResource("10_fp6q4")
+
+[node name="Hurt" type="Node" parent="StateMachine"]
+script = ExtResource("11_tn05j")
+
+[node name="Parry" type="Node" parent="StateMachine"]
+script = ExtResource("12_rbjsf")
+
+[node name="Block" type="Node" parent="StateMachine"]
+script = ExtResource("13_mg8ti")
+
+[node name="ConfidenceRegen" type="Timer" parent="."]
+autostart = true
+
+[node name="DoubleTap" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[connection signal="timeout" from="ConfidenceRegen" to="." method="_on_confidence_regen_timeout"]

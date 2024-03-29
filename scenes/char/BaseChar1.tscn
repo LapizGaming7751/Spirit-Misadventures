@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdppan6umw1pc"]
+[gd_scene load_steps=19 format=3 uid="uid://cdppan6umw1pc"]
 
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="1"]
 [ext_resource type="Script" path="res://scripts/BattleMovement.gd" id="2"]
@@ -8,10 +8,13 @@
 [ext_resource type="Script" path="res://scripts/characters/generic/Air.gd" id="6_gpfga"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Crouch.gd" id="7_k12uu"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Dash.gd" id="8_yciqr"]
-
-[sub_resource type="CapsuleShape2D" id="1"]
-radius = 0.0
-height = 0.0
+[ext_resource type="Script" path="res://scripts/characters/generic/SpotDodge.gd" id="9_tquld"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Turnaround.gd" id="10_mawl2"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Hurt.gd" id="11_bj32h"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Parry.gd" id="11_bjnyv"]
+[ext_resource type="Script" path="res://scripts/characters/secondChar/Attack1.gd" id="11_jv3vg"]
+[ext_resource type="Script" path="res://scripts/characters/generic/Block.gd" id="12_ju4lv"]
+[ext_resource type="Script" path="res://scripts/characters/Hurtbox.gd" id="13_ut7dg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ghi5"]
 animations = [{
@@ -30,8 +33,34 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
 }],
-"loop": true,
+"loop": false,
+"name": &"SkillA",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": false,
 "name": &"dashing",
 "speed": 24.0
 }, {
@@ -42,17 +71,55 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": false,
+"name": &"turnaround",
+"speed": 24.0
 }]
 
-[node name="BaseChar" type="CharacterBody2D"]
-script = ExtResource("2")
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 31.0
+height = 62.0
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("1")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvgsm"]
+size = Vector2(130, 88)
+
+[node name="BaseChar" type="CharacterBody2D" groups=["Characters"]]
+script = ExtResource("2")
+looking = 1
+lastDir = 1
 
 [node name="Anims" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5ghi5")
-animation = &"dashing"
+animation = &"turnaround"
+autoplay = "default"
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("3_vi1sp")
@@ -73,7 +140,54 @@ script = ExtResource("7_k12uu")
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("8_yciqr")
 
+[node name="SpotDodge" type="Node" parent="StateMachine"]
+script = ExtResource("9_tquld")
+
+[node name="Turnaround" type="Node" parent="StateMachine"]
+script = ExtResource("10_mawl2")
+
+[node name="Parry" type="Node" parent="StateMachine"]
+script = ExtResource("11_bjnyv")
+
+[node name="Block" type="Node" parent="StateMachine"]
+script = ExtResource("12_ju4lv")
+
+[node name="Hurt" type="Node" parent="StateMachine"]
+script = ExtResource("11_bj32h")
+
+[node name="SkillA" type="Node" parent="StateMachine" node_paths=PackedStringArray("defaultTransit")]
+script = ExtResource("11_jv3vg")
+isSkill = true
+activeFrame = 3
+endFrame = 4
+knockback = Vector2(15, 0)
+selfKnockback = Vector2(15, 0)
+lunge = Vector2(20, 0)
+stunsFor = 0.24
+defaultTransit = NodePath("../Idle")
+damage = 100.0
+requiredConfidence = 30.0
+returnsConfidence = 55.0
+skillStatus = 1
+
+[node name="Hurtbox" type="Area2D" parent="StateMachine/SkillA"]
+script = ExtResource("13_ut7dg")
+
+[node name="Shape" type="CollisionShape2D" parent="StateMachine/SkillA/Hurtbox"]
+position = Vector2(56, 0)
+shape = SubResource("RectangleShape2D_gvgsm")
+debug_color = Color(0.996078, 0, 0.152941, 0.419608)
+
+[node name="Icon" type="Sprite2D" parent="StateMachine/SkillA/Hurtbox/Shape"]
+position = Vector2(2.38419e-06, 0)
+scale = Vector2(2.03125, 1.375)
+texture = ExtResource("1")
+
 [node name="ConfidenceRegen" type="Timer" parent="."]
 autostart = true
+
+[node name="DoubleTap" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
 
 [connection signal="timeout" from="ConfidenceRegen" to="." method="_on_confidence_regen_timeout"]

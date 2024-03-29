@@ -1,4 +1,6 @@
+res://scripts/characters/punchingBag
 res://scripts/characters/generic
+res://scenes/char
 res://script_templates/StateMachineState
 res://scripts/debug
 res://scripts/characters/secondChar

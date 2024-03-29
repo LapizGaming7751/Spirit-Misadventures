@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjpgvmjxpvcii"]
+[gd_scene load_steps=6 format=3 uid="uid://cjpgvmjxpvcii"]
 
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://cdppan6umw1pc" path="res://scenes/char/BaseChar1.tscn" id="2_602rk"]
 [ext_resource type="PackedScene" uid="uid://p6ctx2ev3p3c" path="res://scenes/char/BaseChar2.tscn" id="3_0xbys"]
+[ext_resource type="Script" path="res://scripts/characters/punchingBag/Punching Bag.gd" id="3_l58ji"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(1228, 62)
@@ -11,8 +12,6 @@ size = Vector2(1228, 62)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(565, 542)
-collision_mask = 0
-collision_priority = 0.0
 
 [node name="Icon" type="Sprite2D" parent="StaticBody2D"]
 scale = Vector2(19.2188, 1)
@@ -22,7 +21,7 @@ texture = ExtResource("1")
 shape = SubResource("1")
 
 [node name="BaseChar" parent="." instance=ExtResource("2_602rk")]
-position = Vector2(650, 463)
+position = Vector2(496, 492)
 
 [node name="Health" type="Label" parent="BaseChar"]
 offset_left = -23.0
@@ -31,10 +30,11 @@ offset_right = 17.0
 offset_bottom = -41.0
 
 [node name="OtherChar" parent="." instance=ExtResource("3_0xbys")]
-position = Vector2(559, 426)
+position = Vector2(329, 471)
+script = ExtResource("3_l58ji")
 
 [node name="Health" type="Label" parent="OtherChar"]
-offset_left = -17.0
-offset_top = -64.0
-offset_right = 23.0
-offset_bottom = -41.0
+offset_left = -31.0
+offset_top = -61.0
+offset_right = 9.0
+offset_bottom = -38.0
