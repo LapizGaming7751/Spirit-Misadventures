@@ -1,7 +1,7 @@
-res://scripts/characters/generic
-res://scripts/characters/punchingBag
-res://scenes/char
-res://script_templates/StateMachineState
-res://scripts/debug
-res://scripts/characters/secondChar
+res://
+res://script_templates
+res://scenes/component
 res://scripts
+res://scripts/characters/generic
+res://scenes/char
+res://scripts/debug

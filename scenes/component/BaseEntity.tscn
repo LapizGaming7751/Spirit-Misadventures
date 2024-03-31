@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://bws15cree8k6e"]
+
+[ext_resource type="Script" path="res://scripts/base/BaseStatFunc.gd" id="1_x62no"]
+[ext_resource type="Script" path="res://scenes/component/ControllerComponent.gd" id="2_gmqbs"]
+[ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="2_hslg8"]
+[ext_resource type="Script" path="res://scenes/component/GearComponent.gd" id="4_f5qod"]
+[ext_resource type="Script" path="res://scripts/base/StateMachine.gd" id="4_mwkt0"]
+[ext_resource type="Script" path="res://scenes/component/PhaseComponent.gd" id="5_8enc8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cggoo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hslg8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lv7of"]
+radius = 31.0
+height = 62.0
+
+[node name="BaseEntity" type="CharacterBody2D"]
+script = ExtResource("1_x62no")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cggoo")
+autoplay = "default"
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_lv7of")
+
+[node name="ControllerComponent" type="Node" parent="."]
+script = ExtResource("2_gmqbs")
+
+[node name="GearComponent" type="Node" parent="."]
+script = ExtResource("4_f5qod")
+
+[node name="PhaseComponent" type="Node" parent="."]
+script = ExtResource("5_8enc8")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_mwkt0")

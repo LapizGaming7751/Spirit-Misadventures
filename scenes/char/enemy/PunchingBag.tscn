@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/characters/punchingBag/PunchingBag.gd" id="1_l6nt7"]
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="2_h7y8d"]
-[ext_resource type="Script" path="res://scripts/characters/StateMachine.gd" id="3_ntcd5"]
+[ext_resource type="Script" path="res://scripts/base/StateMachine.gd" id="3_ntcd5"]
 [ext_resource type="Script" path="res://scripts/characters/punchingBag/PunchingIdle.gd" id="4_w7t8m"]
 [ext_resource type="Script" path="res://scripts/characters/punchingBag/PunchingAir.gd" id="5_ykqyc"]
 [ext_resource type="Script" path="res://scripts/characters/generic/Hurt.gd" id="11_tn05j"]

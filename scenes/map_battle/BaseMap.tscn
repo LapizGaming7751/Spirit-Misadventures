@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjpgvmjxpvcii"]
+[gd_scene load_steps=3 format=3 uid="uid://cjpgvmjxpvcii"]
 
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="1"]
-[ext_resource type="PackedScene" uid="uid://cdppan6umw1pc" path="res://scenes/char/BaseChar.tscn" id="2_602rk"]
-[ext_resource type="PackedScene" uid="uid://p6ctx2ev3p3c" path="res://scenes/char/PunchingBag.tscn" id="3_0xbys"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(1228, 62)
@@ -20,21 +18,3 @@ texture = ExtResource("1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("1")
-
-[node name="BaseChar" parent="." instance=ExtResource("2_602rk")]
-position = Vector2(650, 463)
-
-[node name="Health" type="Label" parent="BaseChar"]
-offset_left = -23.0
-offset_top = -64.0
-offset_right = 17.0
-offset_bottom = -41.0
-
-[node name="OtherChar" parent="." instance=ExtResource("3_0xbys")]
-position = Vector2(559, 426)
-
-[node name="Health" type="Label" parent="OtherChar"]
-offset_left = -17.0
-offset_top = -64.0
-offset_right = 23.0
-offset_bottom = -41.0

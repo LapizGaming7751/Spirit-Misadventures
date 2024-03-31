@@ -16,7 +16,10 @@ func _ready():
 				states[child.name] = child
 			elif child.skillStatus != child.slot.DISABLED and child.skillStatus != child.slot.HIDDEN:
 				states[str(child.skillStatus)] = child
-	print(states)
+	if states:
+		print(states)
+	else: 
+		print("You should probably insert some states in this guy. This place is mad empty")
 	
 	if InitialState:
 		InitialState.Enter()
