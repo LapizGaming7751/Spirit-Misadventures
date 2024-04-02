@@ -1,7 +1,10 @@
-res://
-res://script_templates
 res://scenes/component
+res://
+res://scripts/base
+res://scripts/char/generic
+res://scripts/char/FirstCharacter/passives
+res://scripts/char/FirstCharacter/weapons
+res://script_templates
 res://scripts
-res://scripts/characters/generic
 res://scenes/char
 res://scripts/debug

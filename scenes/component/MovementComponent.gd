@@ -1,4 +1,4 @@
-extends Node
+extends Component
 class_name PlayerController
 
 @onready var Entity : CharacterBody2D = get_parent()
@@ -6,9 +6,9 @@ class_name PlayerController
 var dir : Vector2
 
 func _ready():
-	print(Entity)
+	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Entity.is_on_floor():
 		dir.x = Input.get_axis("left","right")
 		dir.y = 0

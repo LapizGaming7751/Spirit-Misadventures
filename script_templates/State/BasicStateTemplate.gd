@@ -1,10 +1,7 @@
-# meta-name: State Template
-# meta-description: Functions for states
+# meta-name: Empty Basic State
+# meta-description: Lays out the functions within states for usage. Used for basic, generic states.
 # meta-default: true
 # meta-space-indent: 4
-
-## State Class is used as a child with StateMachine, allowing the node to pick up States and activate their code.
-
 extends State
 
 ##Called when the State is activated

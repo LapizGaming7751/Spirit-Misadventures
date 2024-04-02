@@ -1,2 +1,2 @@
-extends Node
+extends Component
 class_name EnemyPhaser

@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bws15cree8k6e"]
+[gd_scene load_steps=8 format=3 uid="uid://bws15cree8k6e"]
 
 [ext_resource type="Script" path="res://scripts/base/BaseStatFunc.gd" id="1_x62no"]
-[ext_resource type="Script" path="res://scenes/component/ControllerComponent.gd" id="2_gmqbs"]
 [ext_resource type="Texture2D" uid="uid://ckgc2qmosqix8" path="res://icon.png" id="2_hslg8"]
-[ext_resource type="Script" path="res://scenes/component/GearComponent.gd" id="4_f5qod"]
-[ext_resource type="Script" path="res://scripts/base/StateMachine.gd" id="4_mwkt0"]
-[ext_resource type="Script" path="res://scenes/component/PhaseComponent.gd" id="5_8enc8"]
+[ext_resource type="PackedScene" uid="uid://b8yqq26oxx4tc" path="res://scenes/component/MovementComponent.tscn" id="3_ooxjh"]
+[ext_resource type="PackedScene" uid="uid://byqxacecmhcuu" path="res://scenes/component/GearComponent.tscn" id="4_xpvdo"]
+[ext_resource type="PackedScene" uid="uid://dwk4ep4yvirbo" path="res://scenes/component/PhaseComponent.tscn" id="5_2peio"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cggoo"]
 animations = [{
@@ -14,8 +13,44 @@ animations = [{
 "texture": ExtResource("2_hslg8")
 }],
 "loop": false,
-"name": &"default",
+"name": &"Air",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hslg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hslg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hslg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hslg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hslg8")
+}],
+"loop": false,
+"name": &"Dash",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hslg8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hslg8")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 24.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lv7of"]
@@ -23,23 +58,30 @@ radius = 31.0
 height = 62.0
 
 [node name="BaseEntity" type="CharacterBody2D"]
+process_priority = 1
+process_physics_priority = 1
 script = ExtResource("1_x62no")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+process_priority = 2
+process_physics_priority = 2
 sprite_frames = SubResource("SpriteFrames_cggoo")
-autoplay = "default"
+animation = &"Dash"
+autoplay = "Idle"
+frame = 4
+frame_progress = 1.0
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+process_priority = 2
+process_physics_priority = 2
 shape = SubResource("CapsuleShape2D_lv7of")
 
-[node name="ControllerComponent" type="Node" parent="."]
-script = ExtResource("2_gmqbs")
+[node name="MovementComponent" parent="." instance=ExtResource("3_ooxjh")]
+process_priority = 3
+process_physics_priority = 3
 
-[node name="GearComponent" type="Node" parent="."]
-script = ExtResource("4_f5qod")
+[node name="GearComponent" parent="." instance=ExtResource("4_xpvdo")]
 
-[node name="PhaseComponent" type="Node" parent="."]
-script = ExtResource("5_8enc8")
+[node name="PhaseComponent" parent="." instance=ExtResource("5_2peio")]
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("4_mwkt0")
+[node name="StateComponent" type="Node" parent="."]

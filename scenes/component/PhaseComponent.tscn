@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwk4ep4yvirbo"]
+
+[ext_resource type="Script" path="res://scenes/component/PhaseComponent.gd" id="1_7bs73"]
+
+[node name="PhaseComponent" type="Node"]
+process_priority = 3
+process_physics_priority = 3
+script = ExtResource("1_7bs73")

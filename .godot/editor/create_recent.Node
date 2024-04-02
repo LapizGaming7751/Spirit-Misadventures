@@ -1,5 +1,6 @@
-State
 Node
+Passive
+Weapon
 CharacterBody2D
 Label
 Sprite2D
@@ -9,6 +10,3 @@ Timer
 VSplitContainer
 Control
 AnimatedSprite2D
-AnimationPlayer
-StateMachineState
-FiniteStateMachine
